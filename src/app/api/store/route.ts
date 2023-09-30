@@ -1,0 +1,35 @@
+import { prisma } from '@/lib/prisma'
+import { storeValidator } from '@/lib/validators'
+import { auth } from '@clerk/nextjs'
+import { NextResponse } from 'next/server'
+import { z } from 'zod'
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json()
+    const { name } = storeValidator.parse(body)
+
+    const { userId } = auth()
+
+    if (!userId) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+    }
+
+    const post = await prisma.store.create({
+      data: {
+        name,
+        userId,
+      },
+    })
+
+    return NextResponse.json(post)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ message: error.message }, { status: 400 })
+    }
+    return NextResponse.json(
+      { message: 'Could not create store at this time. Please try later' },
+      { status: 500 }
+    )
+  }
+}
