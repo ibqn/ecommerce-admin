@@ -3,6 +3,9 @@ import './globals.css'
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { StoreModal } from '@/components/modals/store-modal'
+import { ReactNode } from 'react'
+import Providers from '@/lib/providers'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,19 +14,22 @@ export const metadata: Metadata = {
   description: 'Admin Dashboard',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+type Props = {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: Props) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <StoreModal />
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <ClerkProvider>
+          <Providers>
+            <StoreModal />
+            {children}
+            <Toaster />
+          </Providers>
+        </ClerkProvider>
+      </body>
+    </html>
   )
 }
