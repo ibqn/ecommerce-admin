@@ -16,10 +16,17 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+import { toast } from '@/components/ui/use-toast'
+import { useRouter } from 'next/navigation'
 
 type Props = {}
 
 export const StoreModal = (props: Props) => {
+  const [loading, setLoading] = useState(false)
+
   const storeModal = useStoreModal()
 
   const form = useForm<StorePayload>({
@@ -29,9 +36,42 @@ export const StoreModal = (props: Props) => {
     },
   })
 
-  const onSubmit = async (data: StorePayload) => {
-    console.log(data)
-  }
+  const router = useRouter()
+
+  const { mutate: createStore } = useMutation({
+    mutationFn: (name: string) => axios.post(`/api/store`, { name }),
+    onError: (error, variables, context) => {
+      if (axios.isAxiosError(error) && error.response?.status === 409) {
+        toast({
+          title: 'Store already exists',
+          description: error.response?.data?.message,
+          variant: 'yellow',
+        })
+      } else {
+        toast({
+          title: 'Error while creating store',
+          description: 'Your store was not created. Please try again.',
+          variant: 'destructive',
+        })
+      }
+    },
+    onSuccess: (data, variables, context) => {
+      router.refresh()
+
+      toast({
+        title: 'New store created',
+        description: `Store was created successfully`,
+        variant: 'green',
+      })
+    },
+  })
+
+  const onSubmit = form.handleSubmit(({ name }: StorePayload) => {
+    setLoading(true)
+    console.log(name)
+    createStore(name)
+    setLoading(false)
+  })
 
   return (
     <Modal
@@ -42,7 +82,7 @@ export const StoreModal = (props: Props) => {
     >
       <div className="space-y-4 py-4 pb-4">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={onSubmit}>
             <FormField
               name="name"
               control={form.control}
@@ -50,7 +90,11 @@ export const StoreModal = (props: Props) => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="E-Commerce" {...field} />
+                    <Input
+                      disabled={loading}
+                      placeholder="E-Commerce"
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>
                     This is your new store name.
@@ -61,10 +105,16 @@ export const StoreModal = (props: Props) => {
             />
 
             <div className="flex w-full items-center justify-end space-x-2 pt-6">
-              <Button variant="outline" onClick={storeModal.onClose}>
+              <Button
+                disabled={loading}
+                variant="outline"
+                onClick={storeModal.onClose}
+              >
                 Cancel
               </Button>
-              <Button type="submit">Continue</Button>
+              <Button disabled={loading} type="submit">
+                Continue
+              </Button>
             </div>
           </form>
         </Form>
