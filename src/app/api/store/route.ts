@@ -15,6 +15,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
     }
 
+    // check if store already exists
+    const storeExists = await prisma.store.findUnique({
+      where: { name },
+    })
+
+    if (storeExists) {
+      return NextResponse.json(
+        { message: 'Store with this name already exists' },
+        { status: 409 }
+      )
+    }
+
     const post = await prisma.store.create({
       data: {
         name,
