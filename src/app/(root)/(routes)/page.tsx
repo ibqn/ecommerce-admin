@@ -1,7 +1,6 @@
 'use client'
 
 import { useStoreModal } from '@/hooks/use-store-modal'
-import { UserButton } from '@clerk/nextjs'
 import { useEffect } from 'react'
 
 export default function SetupPage() {
@@ -12,14 +11,7 @@ export default function SetupPage() {
     if (!isOpen) {
       onOpen()
     }
-  }, [onOpen, isOpen])
+  }, [isOpen, onOpen])
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <p>admin dashboard</p>
-      <div>
-        <UserButton afterSignOutUrl="/" />
-      </div>
-    </main>
-  )
+  return null
 }

@@ -55,8 +55,8 @@ export const StoreModal = (props: Props) => {
         })
       }
     },
-    onSuccess: (data, variables, context) => {
-      router.refresh()
+    onSuccess: (result, variables, context) => {
+      router.replace(`/${result.data.name}`)
 
       toast({
         title: 'New store created',
@@ -68,7 +68,6 @@ export const StoreModal = (props: Props) => {
 
   const onSubmit = form.handleSubmit(({ name }: StorePayload) => {
     setLoading(true)
-    console.log(name)
     createStore(name)
     setLoading(false)
   })
