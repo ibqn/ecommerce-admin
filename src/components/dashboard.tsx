@@ -20,7 +20,7 @@ export const Dashboard = ({ name }: Props) => {
   }, [])
 
   return (
-    <div>
+    <div className="flex items-center gap-4 p-4">
       dashboard {name}
       <Button onClick={onOpen}>open</Button>
     </div>
