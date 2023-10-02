@@ -27,14 +27,14 @@ export async function POST(request: Request) {
       )
     }
 
-    const post = await prisma.store.create({
+    const store = await prisma.store.create({
       data: {
         name,
         userId,
       },
     })
 
-    return NextResponse.json(post)
+    return NextResponse.json(store)
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ message: error.message }, { status: 400 })
