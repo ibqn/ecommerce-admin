@@ -13,6 +13,11 @@ export const MainNav = ({ className, ...props }: Props) => {
 
   const routes = [
     {
+      href: `/${params.storeName}`,
+      label: 'Overview',
+      active: pathname === `/${params.storeName}`,
+    },
+    {
       href: `/${params.storeName}/settings`,
       label: 'Settings',
       active: pathname === `/${params.storeName}/settings`,
@@ -20,7 +25,10 @@ export const MainNav = ({ className, ...props }: Props) => {
   ]
 
   return (
-    <nav className={cn('flex items-center px-4 lg:p-6', className)} {...props}>
+    <nav
+      className={cn('flex items-center space-x-4 lg:space-x-6', className)}
+      {...props}
+    >
       {routes.map((route, index) => {
         const { label, href, active } = route
         return (
