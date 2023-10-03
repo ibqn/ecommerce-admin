@@ -3,6 +3,7 @@ import { MainNav } from '@/components/main-nav'
 import { StoreSwitcher } from '@/components/store-switcher'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 type Props = {}
 
@@ -24,7 +25,9 @@ export const Navbar = async (props: Props) => {
 
         <MainNav className="mx-6" />
 
-        <div className="ml-auto flex items-center">
+        <div className="ml-auto flex items-center gap-4">
+          <ThemeToggle />
+
           <UserButton afterSignOutUrl="/" />
         </div>
       </div>
