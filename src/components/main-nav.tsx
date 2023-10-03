@@ -18,6 +18,11 @@ export const MainNav = ({ className, ...props }: Props) => {
       active: pathname === `/${params.storeName}`,
     },
     {
+      href: `/${params.storeName}/billboards`,
+      label: 'Billboards',
+      active: pathname === `/${params.storeName}/billboards`,
+    },
+    {
       href: `/${params.storeName}/settings`,
       label: 'Settings',
       active: pathname === `/${params.storeName}/settings`,
