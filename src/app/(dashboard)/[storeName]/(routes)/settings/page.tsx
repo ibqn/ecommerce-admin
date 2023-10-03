@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { SettingsForm } from './settings-form'
+import { SettingsForm } from '@/components/forms'
 import { auth } from '@clerk/nextjs'
 import { notFound, redirect } from 'next/navigation'
 
