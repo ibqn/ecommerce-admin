@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 
 type Props = {
-  name?: string
+  name: string
 }
 
 export const Dashboard = ({ name }: Props) => {
