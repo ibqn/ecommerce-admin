@@ -21,7 +21,7 @@ export const Billboard = (props: Props) => {
         />
 
         <Button
-          onClick={() => router.push(`/${params.storeName}/billboard/new`)}
+          onClick={() => router.push(`/${params.storeName}/billboard/create`)}
         >
           <Plus className="mr-2 h-4 w-4" /> Add New
         </Button>
