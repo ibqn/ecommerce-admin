@@ -1,5 +1,6 @@
 'use client'
 
+import { ApiCallout } from '@/components/api-callout'
 import { Heading } from '@/components/heading'
 import { AlertModal } from '@/components/modals/alert-modal'
 import { Button } from '@/components/ui/button'
@@ -15,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { toast } from '@/components/ui/use-toast'
+import { useOrigin } from '@/hooks/use-origin'
 import { StorePayload, storeValidator } from '@/lib/validators'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Store } from '@prisma/client'
@@ -34,6 +36,8 @@ export const SettingsForm = (props: Props) => {
 
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const origin = useOrigin()
 
   const router = useRouter()
 
@@ -166,6 +170,14 @@ export const SettingsForm = (props: Props) => {
           </Button>
         </form>
       </Form>
+
+      <Separator />
+
+      <ApiCallout
+        title="NEXT_PUBLIC_API_URL"
+        description={`${origin}/api/${initialData.name}`}
+        variant="public"
+      />
     </>
   )
 }
