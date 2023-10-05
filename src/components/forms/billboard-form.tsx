@@ -25,6 +25,7 @@ import { Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { ImageUpload } from '../image-upload'
 
 type Props = {
   initialData?: Billboard
@@ -170,6 +171,29 @@ export const BillboardForm = (props: Props) => {
 
       <Form {...form}>
         <form onSubmit={onSubmit} className="w-full space-y-8">
+          <FormField
+            name="imageUrl"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Background image</FormLabel>
+                <FormControl>
+                  <ImageUpload
+                    value={field.value ? [field.value] : []}
+                    disabled={loading}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange('')}
+                  />
+                </FormControl>
+
+                <FormDescription>
+                  This is your background image.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <div className="grid grid-cols-3 gap-8">
             <FormField
               name="label"
