@@ -5,18 +5,27 @@ import { Heading } from './heading'
 import { Button } from './ui/button'
 import { Separator } from './ui/separator'
 import { useParams, useRouter } from 'next/navigation'
+import { Billboard } from '@prisma/client'
 
-type Props = {}
+type Props = {
+  data: Billboard[]
+}
 
-export const Billboard = (props: Props) => {
+type Params = {
+  storeName: string
+}
+
+export const BillboardList = (props: Props) => {
+  const { data } = props
+
   const router = useRouter()
-  const params = useParams()
+  const params = useParams<Params>()
 
   return (
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title="Billboards"
+          title={`Billboards (${data.length})`}
           description="Manage billboards for your store"
         />
 
