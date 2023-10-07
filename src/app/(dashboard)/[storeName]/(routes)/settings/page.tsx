@@ -16,7 +16,7 @@ export default async function Page({ params }: Props) {
     redirect('/sign-in')
   }
 
-  const store = await prisma.store.findFirst({ where: { name } })
+  const store = await prisma.store.findUnique({ where: { name } })
 
   if (!store) {
     notFound()

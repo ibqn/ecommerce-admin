@@ -29,10 +29,11 @@ import { ImageUpload } from '../image-upload'
 
 type Props = {
   initialData?: Billboard
+  storeId: string
 }
 
 export const BillboardForm = (props: Props) => {
-  const { initialData } = props
+  const { initialData, storeId } = props
 
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
