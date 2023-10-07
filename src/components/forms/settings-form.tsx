@@ -95,7 +95,7 @@ export const SettingsForm = (props: Props) => {
         })
       } else {
         toast({
-          title: 'Error while creating store',
+          title: 'Error while deleting store',
           description: 'Could not delete store. Please try again.',
           variant: 'destructive',
         })
@@ -123,7 +123,12 @@ export const SettingsForm = (props: Props) => {
     <>
       <AlertModal
         isOpen={open}
-        name={initialData.name}
+        message={
+          <>
+            Do you really want to delete{' '}
+            <span className="italic">{initialData.name}</span> store?
+          </>
+        }
         onClose={() => setOpen(false)}
         onDeletion={onDeletion}
         loading={loading}

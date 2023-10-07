@@ -22,7 +22,7 @@ import { Billboard } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { Trash } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ImageUpload } from '../image-upload'
@@ -32,11 +32,17 @@ type Props = {
   storeId: string
 }
 
+type Params = {
+  storeName: string
+}
+
 export const BillboardForm = (props: Props) => {
   const { initialData, storeId } = props
 
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const params = useParams<Params>()
 
   const title = useMemo(
     () => (initialData ? 'Edit billboard' : 'Create billboard'),
@@ -49,15 +55,30 @@ export const BillboardForm = (props: Props) => {
         : 'Add a new billboard configuration',
     [initialData]
   )
-  const toastTitle = useMemo(
-    () => (initialData ? 'Billboard updated' : 'Billboard created'),
-    [initialData]
-  )
-  const toastMessage = useMemo(
+  const toastSuccessMessage = useMemo(
     () =>
       initialData
-        ? 'Billboard configuration was saved'
-        : 'A new billboard was created',
+        ? {
+            title: 'Billboard updated',
+            description: 'Billboard configuration was saved',
+          }
+        : {
+            title: 'Billboard created',
+            description: 'A new billboard was created',
+          },
+    [initialData]
+  )
+  const toastErrorMessage = useMemo(
+    () =>
+      initialData
+        ? {
+            title: 'Error while updating billboard',
+            description: 'Could not update billboard. Please try again.',
+          }
+        : {
+            title: 'Error while creating billboard',
+            description: 'Could not create billboard. Please try again.',
+          },
     [initialData]
   )
 
@@ -78,30 +99,37 @@ export const BillboardForm = (props: Props) => {
     },
   })
 
-  const { mutate: updateStore } = useMutation({
-    mutationFn: (name: string) => axios.patch(`/api/store/`, { name }),
+  const { mutate: createOrUpdateBillboard } = useMutation({
+    mutationFn: (data: BillboardPayload) => {
+      if (initialData) {
+        return axios.patch(
+          `/api/store/${storeId}/billboard/${initialData.id}`,
+          data
+        )
+      }
+
+      return axios.post(`/api/store/${storeId}/billboard`, data)
+    },
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'Store does not exist',
+          title: 'Billboard does not exist',
           description: error.response?.data?.message,
           variant: 'yellow',
         })
       } else {
         toast({
-          title: 'Error while creating store',
-          description: 'Could not update store. Please try again.',
+          ...toastErrorMessage,
           variant: 'destructive',
         })
       }
     },
     onSuccess: (result, variables, context) => {
       router.refresh()
-      router.push(`/${result.data.name}/settings`)
+      router.push(`/${params.storeName}/billboards`)
 
       toast({
-        title: 'Store updated',
-        description: `Store was updated successfully`,
+        ...toastSuccessMessage,
         variant: 'green',
       })
     },
@@ -109,34 +137,35 @@ export const BillboardForm = (props: Props) => {
 
   const onSubmit = form.handleSubmit((data: BillboardPayload) => {
     setLoading(true)
-    //todo
+    createOrUpdateBillboard(data)
     setLoading(false)
   })
 
-  const { mutate: deleteStore } = useMutation({
-    mutationFn: () => axios.delete(`/api/store/`),
+  const { mutate: deleteBillboard } = useMutation({
+    mutationFn: () =>
+      axios.delete(`/api/store/${storeId}/billboard/${initialData?.id}`),
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'Store does not exist',
+          title: 'billboard does not exist',
           description: error.response?.data?.message,
           variant: 'yellow',
         })
       } else {
         toast({
-          title: 'Error while creating store',
-          description: 'Could not delete store. Please try again.',
+          title: 'Error while deleting billboard',
+          description: 'Could not delete billboard. Please try again.',
           variant: 'destructive',
         })
       }
     },
     onSuccess: (result, variables, context) => {
       router.refresh()
-      router.push(`/`)
+      router.push(`/${params.storeName}/billboards`)
 
       toast({
-        title: 'Store deleted',
-        description: `Store was deleted successfully`,
+        title: 'Billboard deleted',
+        description: `Billboard was deleted successfully`,
         variant: 'green',
       })
     },
@@ -144,7 +173,7 @@ export const BillboardForm = (props: Props) => {
 
   const onDeletion = () => {
     setLoading(true)
-    deleteStore()
+    deleteBillboard()
     setLoading(false)
   }
 
@@ -152,7 +181,12 @@ export const BillboardForm = (props: Props) => {
     <>
       <AlertModal
         isOpen={open}
-        name={''}
+        message={
+          <>
+            Do you really want to delete{' '}
+            <span className="italic">{initialData?.label}</span> billboard?
+          </>
+        }
         onClose={() => setOpen(false)}
         onDeletion={onDeletion}
         loading={loading}

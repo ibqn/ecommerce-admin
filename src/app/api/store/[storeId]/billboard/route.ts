@@ -63,3 +63,28 @@ export async function POST(request: Request, { params }: Props) {
     )
   }
 }
+
+export async function GET(request: Request, { params }: Props) {
+  const { storeId } = params
+
+  try {
+    const { userId } = auth()
+
+    if (!userId) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+    }
+
+    const billboards = await prisma.billboard.findMany({
+      where: { storeId },
+    })
+
+    return NextResponse.json(billboards)
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: 'Could not retrieve billboards at this time. Please try later',
+      },
+      { status: 500 }
+    )
+  }
+}
