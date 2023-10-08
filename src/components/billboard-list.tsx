@@ -6,6 +6,8 @@ import { Button } from './ui/button'
 import { Separator } from './ui/separator'
 import { useParams, useRouter } from 'next/navigation'
 import { Billboard } from '@prisma/client'
+import { DataTable } from './data-table'
+import { columns } from './columns'
 
 type Props = {
   data: Billboard[]
@@ -37,6 +39,8 @@ export const BillboardList = (props: Props) => {
       </div>
 
       <Separator />
+
+      <DataTable columns={columns} data={data} />
     </>
   )
 }
