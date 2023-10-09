@@ -4,6 +4,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { ArrowUpDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { CellAction } from './cell-action'
 
 export type BillboardColumn = {
   id: string
@@ -43,5 +44,10 @@ export const columns: ColumnDef<BillboardColumn>[] = [
       const date = format(row.getValue('createdAt'), 'MMMM do, yyyy')
       return <div>{date}</div>
     },
+  },
+  {
+    id: 'actions',
+    header: 'Actions',
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ]
