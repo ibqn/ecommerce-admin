@@ -1,13 +1,14 @@
 'use client'
 
 import { Plus } from 'lucide-react'
-import { Heading } from './heading'
-import { Button } from './ui/button'
-import { Separator } from './ui/separator'
+import { Heading } from '@/components/heading'
+import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { useParams, useRouter } from 'next/navigation'
 import { Billboard } from '@prisma/client'
-import { DataTable } from './data-table'
-import { columns } from './columns'
+import { DataTable } from '@/components/data-table'
+import { columns } from '@/components/columns'
+import { ApiList } from '@/components/api-list'
 
 type Props = {
   data: Billboard[]
@@ -41,6 +42,11 @@ export const BillboardList = (props: Props) => {
       <Separator />
 
       <DataTable searchKey="label" columns={columns} data={data} />
+
+      <Heading title="API" description="API calls for billboards" />
+      <Separator />
+
+      <ApiList entityName="billboards" entityIdName="billboardId" />
     </>
   )
 }
