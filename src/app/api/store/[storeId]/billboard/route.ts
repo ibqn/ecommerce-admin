@@ -68,11 +68,11 @@ export async function GET(request: Request, { params }: Props) {
   const { storeId } = params
 
   try {
-    const { userId } = auth()
+    // const { userId } = auth()
 
-    if (!userId) {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
-    }
+    // if (!userId) {
+    //   return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+    // }
 
     const billboards = await prisma.billboard.findMany({
       where: { storeId },
