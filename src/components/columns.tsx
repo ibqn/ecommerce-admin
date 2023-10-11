@@ -10,6 +10,7 @@ export type BillboardColumn = {
   id: string
   label: string
   createdAt: Date
+  storeId: string
 }
 
 export const columns: ColumnDef<BillboardColumn>[] = [
@@ -47,7 +48,10 @@ export const columns: ColumnDef<BillboardColumn>[] = [
   },
   {
     id: 'actions',
-    header: 'Actions',
-    cell: ({ row }) => <CellAction data={row.original} />,
+    cell: ({ row }) => (
+      <div className="flex justify-end">
+        <CellAction data={row.original} />
+      </div>
+    ),
   },
 ]

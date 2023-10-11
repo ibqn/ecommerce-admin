@@ -8,12 +8,15 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from '@/components/ui/use-toast'
+import axios from 'axios'
+import { useMutation } from '@tanstack/react-query'
 
 type Props = {
   data: BillboardColumn
@@ -41,9 +44,39 @@ export const CellAction = (props: Props) => {
     })
   }
 
+  const { mutate: deleteBillboard } = useMutation({
+    mutationFn: () =>
+      axios.delete(`/api/store/${data.storeId}/billboard/${data.id}`),
+    onError: (error, variables, context) => {
+      if (axios.isAxiosError(error) && error.response?.status === 409) {
+        toast({
+          title: 'billboard does not exist',
+          description: error.response?.data?.message,
+          variant: 'yellow',
+        })
+      } else {
+        toast({
+          title: 'Error while deleting billboard',
+          description: 'Could not delete billboard. Please try again.',
+          variant: 'destructive',
+        })
+      }
+    },
+    onSuccess: (result, variables, context) => {
+      setOpen(false)
+      router.refresh()
+
+      toast({
+        title: 'Billboard deleted',
+        description: `Billboard was deleted successfully`,
+        variant: 'green',
+      })
+    },
+  })
+
   const onDeletion = () => {
     setLoading(true)
-    // deleteBillboard()
+    deleteBillboard()
     setLoading(false)
   }
 
@@ -80,7 +113,11 @@ export const CellAction = (props: Props) => {
           >
             <Edit className="mr-2 h-4 w-4" /> Update
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onClick={() => setOpen(true)}
+            className="text-red-600 focus:text-red-500"
+          >
             <Trash className="mr-2 h-4 w-4" /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
