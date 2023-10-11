@@ -25,7 +25,7 @@ export default async function Page({ params }: Props) {
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillboardList data={billboards} />
+        <BillboardList data={billboards} storeId={store.id} />
       </div>
     </div>
   )

@@ -12,6 +12,7 @@ import { ApiList } from '@/components/api-list'
 
 type Props = {
   data: Billboard[]
+  storeId: string
 }
 
 type Params = {
@@ -19,7 +20,7 @@ type Params = {
 }
 
 export const BillboardList = (props: Props) => {
-  const { data } = props
+  const { data, storeId } = props
 
   const router = useRouter()
   const params = useParams<Params>()
@@ -46,7 +47,11 @@ export const BillboardList = (props: Props) => {
       <Heading title="API" description="API calls for billboards" />
       <Separator />
 
-      <ApiList entityName="billboards" entityIdName="billboardId" />
+      <ApiList
+        storeId={storeId}
+        entityName="billboard"
+        entityIdName="billboardId"
+      />
     </>
   )
 }

@@ -8,6 +8,7 @@ import { ApiCallout } from '@/components/api-callout'
 type Props = {
   entityName: string
   entityIdName: string
+  storeId: string
 }
 
 type Params = {
@@ -15,14 +16,14 @@ type Params = {
 }
 
 export const ApiList = (props: Props) => {
-  const { entityName, entityIdName } = props
+  const { entityName, entityIdName, storeId } = props
 
   const params = useParams<Params>()
   const origin = useOrigin()
 
   const baseUrl = useMemo(
-    () => `${origin}/api/${params.storeName}`,
-    [origin, params]
+    () => `${origin}/api/store/${storeId}`,
+    [origin, storeId]
   )
 
   return (
@@ -36,6 +37,24 @@ export const ApiList = (props: Props) => {
       <ApiCallout
         title="GET"
         variant="public"
+        description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+      />
+
+      <ApiCallout
+        title="POST"
+        variant="admin"
+        description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+      />
+
+      <ApiCallout
+        title="PATCH"
+        variant="admin"
+        description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+      />
+
+      <ApiCallout
+        title="DELETE"
+        variant="admin"
         description={`${baseUrl}/${entityName}/{${entityIdName}}`}
       />
     </>
