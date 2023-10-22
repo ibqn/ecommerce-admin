@@ -18,7 +18,8 @@ model Store {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  billboards Billboard[] @relation("StoreToBillboard")
+  billboards Billboard[]
+  categories Category[]
 }
 
 model Billboard {
@@ -30,5 +31,19 @@ model Billboard {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  store Store @relation("StoreToBillboard", fields: [storeId], references: [id])
+  store      Store      @relation(fields: [storeId], references: [id])
+  categories Category[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  storeId     String
+  name        String    @unique
+  billboardId String
+  billboard   Billboard @relation(fields: [billboardId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  store Store @relation(fields: [storeId], references: [id])
 }

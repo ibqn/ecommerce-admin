@@ -23,6 +23,11 @@ export const MainNav = ({ className, ...props }: Props) => {
       active: pathname === `/${params.storeName}/billboards`,
     },
     {
+      href: `/${params.storeName}/categories`,
+      label: 'Categories',
+      active: pathname === `/${params.storeName}/categories`,
+    },
+    {
       href: `/${params.storeName}/settings`,
       label: 'Settings',
       active: pathname === `/${params.storeName}/settings`,
