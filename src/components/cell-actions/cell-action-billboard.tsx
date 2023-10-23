@@ -1,7 +1,7 @@
 'use client'
 
-import { BillboardColumn } from '@/components/columns'
-import { AlertModal } from './modals/alert-modal'
+import { type BillboardColumn } from '@/components/columns'
+import { AlertModal } from '../modals/alert-modal'
 import { useState } from 'react'
 import {
   DropdownMenu,
@@ -26,7 +26,7 @@ type Params = {
   storeName: string
 }
 
-export const CellAction = (props: Props) => {
+export const CellActionBillboard = (props: Props) => {
   const { data } = props
 
   const [open, setOpen] = useState(false)

@@ -1,4 +1,4 @@
-import { BillboardList } from '@/components/lists'
+import { CategoryList } from '@/components/lists'
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 
@@ -17,15 +17,21 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  const billboards = await prisma.billboard.findMany({
+  const categories = await prisma.category.findMany({
     where: { storeId: store.id },
+    include: { billboard: true },
     orderBy: { createdAt: 'desc' },
   })
+
+  const transformedCategories = categories.map((category) => ({
+    ...category,
+    billboardLabel: category.billboard.label,
+  }))
 
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillboardList data={billboards} storeId={store.id} />
+        <CategoryList data={transformedCategories} storeId={store.id} />
       </div>
     </div>
   )

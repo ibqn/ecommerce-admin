@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator'
 import { useParams, useRouter } from 'next/navigation'
 import { Billboard } from '@prisma/client'
 import { DataTable } from '@/components/data-table'
-import { columns } from '@/components/columns'
+import { billboardColumns } from '@/components/columns'
 import { ApiList } from '@/components/api-list'
 
 type Props = {
@@ -42,7 +42,7 @@ export const BillboardList = (props: Props) => {
 
       <Separator />
 
-      <DataTable searchKey="label" columns={columns} data={data} />
+      <DataTable searchKey="label" columns={billboardColumns} data={data} />
 
       <Heading title="API" description="API calls for billboards" />
       <Separator />
