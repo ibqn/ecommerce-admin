@@ -25,7 +25,7 @@ import { Trash } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { ImageUpload } from '../image-upload'
+import { ImageUpload } from '@/components/image-upload'
 
 type Props = {
   initialData?: Billboard
