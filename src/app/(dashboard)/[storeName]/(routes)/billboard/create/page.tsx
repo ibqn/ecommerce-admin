@@ -1,4 +1,4 @@
-import { BillboardForm } from '@/components/forms/billboard-form'
+import { BillboardForm } from '@/components/forms'
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 
