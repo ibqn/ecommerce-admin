@@ -36,7 +36,7 @@ export async function PATCH(request: Request, { params }: Props) {
       )
     }
 
-    // check if billboard  exists
+    // check if billboard exists
     const billboardExists = await prisma.billboard.findUnique({
       where: { id: billboardId },
     })
@@ -88,7 +88,7 @@ export async function DELETE(request: Request, { params }: Props) {
       )
     }
 
-    // check if billboard  exists
+    // check if billboard exists
     const billboardExists = await prisma.billboard.findUnique({
       where: { id: billboardId },
     })
@@ -135,7 +135,7 @@ export async function GET(request: Request, { params }: Props) {
       )
     }
 
-    // check if billboard  exists
+    // check if billboard exists
     const billboard = await prisma.billboard.findUnique({
       where: { id: billboardId },
     })
