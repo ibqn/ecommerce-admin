@@ -38,7 +38,7 @@ export async function PATCH(request: Request, { params }: Props) {
 
     // check if category exists
     const categoryExists = await prisma.category.findUnique({
-      where: { id: billboardId },
+      where: { id: categoryId },
     })
 
     if (!categoryExists) {
