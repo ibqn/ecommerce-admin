@@ -106,7 +106,7 @@ export const CategoryForm = (props: Props) => {
     },
   })
 
-  const { mutate: createOrUpdateBillboard } = useMutation({
+  const { mutate: createOrUpdateCategory } = useMutation({
     mutationFn: (data: CategoryPayload) => {
       if (initialData) {
         return axios.patch(
@@ -120,7 +120,7 @@ export const CategoryForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'Billboard does not exist',
+          title: 'Category does not exist',
           description: error.response?.data?.message,
           variant: 'yellow',
         })
@@ -144,11 +144,11 @@ export const CategoryForm = (props: Props) => {
 
   const onSubmit = form.handleSubmit((data: CategoryPayload) => {
     setLoading(true)
-    createOrUpdateBillboard(data)
+    createOrUpdateCategory(data)
     setLoading(false)
   })
 
-  const { mutate: deleteBillboard } = useMutation({
+  const { mutate: deleteCategory } = useMutation({
     mutationFn: () =>
       axios.delete(`/api/store/${storeId}/category/${initialData?.id}`),
     onError: (error, variables, context) => {
@@ -180,7 +180,7 @@ export const CategoryForm = (props: Props) => {
 
   const onDeletion = () => {
     setLoading(true)
-    deleteBillboard()
+    deleteCategory()
     setLoading(false)
   }
 
