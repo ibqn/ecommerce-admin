@@ -50,7 +50,7 @@ export const CellActionBillboard = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'billboard does not exist',
+          title: 'Billboard does not exist',
           description: error.response?.data?.message,
           variant: 'yellow',
         })
