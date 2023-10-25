@@ -22,7 +22,7 @@ export default async function Page({ params }: Props) {
   }
 
   const billboards = await prisma.billboard.findMany({
-    where: { id: store.id },
+    where: { storeId: store.id },
   })
 
   return (
