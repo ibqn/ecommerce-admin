@@ -41,15 +41,15 @@ export const CategoryList = (props: Props) => {
 
       <Separator />
 
-      <DataTable searchKey="label" columns={categoryColumns} data={data} />
+      <DataTable searchKey="name" columns={categoryColumns} data={data} />
 
-      <Heading title="API" description="API calls for billboards" />
+      <Heading title="API" description="API calls for categories" />
       <Separator />
 
       <ApiList
         storeId={storeId}
-        entityName="billboard"
-        entityIdName="billboardId"
+        entityName="category"
+        entityIdName="categoryId"
       />
     </>
   )
