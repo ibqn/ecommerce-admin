@@ -39,25 +39,25 @@ export const CellActionCategory = (props: Props) => {
     navigator.clipboard.writeText(id)
     toast({
       title: 'Copied',
-      description: `Billboard ID copied to clipboard.`,
+      description: `Category ID copied to clipboard.`,
       variant: 'green',
     })
   }
 
-  const { mutate: deleteBillboard } = useMutation({
+  const { mutate: deleteCategory } = useMutation({
     mutationFn: () =>
-      axios.delete(`/api/store/${data.storeId}/billboard/${data.id}`),
+      axios.delete(`/api/store/${data.storeId}/category/${data.id}`),
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'billboard does not exist',
+          title: 'Category does not exist',
           description: error.response?.data?.message,
           variant: 'yellow',
         })
       } else {
         toast({
-          title: 'Error while deleting billboard',
-          description: 'Could not delete billboard. Please try again.',
+          title: 'Error while deleting category',
+          description: 'Could not delete category. Please try again.',
           variant: 'destructive',
         })
       }
@@ -67,8 +67,8 @@ export const CellActionCategory = (props: Props) => {
       router.refresh()
 
       toast({
-        title: 'Billboard deleted',
-        description: `Billboard was deleted successfully`,
+        title: 'Category deleted',
+        description: `Category was deleted successfully`,
         variant: 'green',
       })
     },
@@ -76,7 +76,7 @@ export const CellActionCategory = (props: Props) => {
 
   const onDeletion = () => {
     setLoading(true)
-    deleteBillboard()
+    deleteCategory()
     setLoading(false)
   }
 
@@ -87,7 +87,7 @@ export const CellActionCategory = (props: Props) => {
         message={
           <>
             Do you really want to delete{' '}
-            <span className="italic">{data.name}</span> billboard?
+            <span className="italic">{data.name}</span> category?
           </>
         }
         onClose={() => setOpen(false)}
@@ -108,7 +108,7 @@ export const CellActionCategory = (props: Props) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeName}/billboard/${data.id}`)
+              router.push(`/${params.storeName}/category/${data.id}`)
             }
           >
             <Edit className="mr-2 h-4 w-4" /> Update
