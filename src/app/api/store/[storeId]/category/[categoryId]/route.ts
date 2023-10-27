@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { billboardValidator, categoryValidator } from '@/lib/validators'
+import { categoryValidator } from '@/lib/validators'
 import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
