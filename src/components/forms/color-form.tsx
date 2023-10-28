@@ -217,14 +217,11 @@ export const ColorForm = (props: Props) => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <div className="flex items-center">
-                      <Input
-                        disabled={loading}
-                        placeholder="Color name..."
-                        {...field}
-                      />
-                      <div className="py-8" />
-                    </div>
+                    <Input
+                      disabled={loading}
+                      placeholder="Color name..."
+                      {...field}
+                    />
                   </FormControl>
 
                   <FormDescription>
@@ -249,7 +246,7 @@ export const ColorForm = (props: Props) => {
                         {...field}
                       />
                       <div
-                        className="rounded-full border p-8"
+                        className="rounded-full border p-4"
                         style={{ backgroundColor: field.value }}
                       />
                     </div>
