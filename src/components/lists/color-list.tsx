@@ -5,13 +5,13 @@ import { Heading } from '@/components/heading'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useParams, useRouter } from 'next/navigation'
-import { Size } from '@prisma/client'
+import { Color } from '@prisma/client'
 import { DataTable } from '@/components/data-table'
 import { colorColumns } from '@/components/columns'
 import { ApiList } from '@/components/api-list'
 
 type Props = {
-  data: Size[]
+  data: Color[]
   storeId: string
 }
 
@@ -29,7 +29,7 @@ export const ColorList = (props: Props) => {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Sizes (${data.length})`}
+          title={`Colors (${data.length})`}
           description="Manage colors for your store"
         />
 
