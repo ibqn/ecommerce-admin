@@ -49,7 +49,7 @@ export const colorColumns: ColumnDef<ColorColumn>[] = [
         <div className="flex items-center gap-x-2">
           {colorValue}
           <div
-            className="h-6 w-6 rounded-full border"
+            className="rounded-full border p-4"
             style={{ backgroundColor: colorValue }}
           ></div>
         </div>
