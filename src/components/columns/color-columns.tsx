@@ -42,6 +42,19 @@ export const colorColumns: ColumnDef<ColorColumn>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => {
+      const colorValue = row.original.value
+
+      return (
+        <div className="flex items-center gap-x-2">
+          {colorValue}
+          <div
+            className="h-6 w-6 rounded-full border"
+            style={{ backgroundColor: colorValue }}
+          ></div>
+        </div>
+      )
+    },
   },
   {
     accessorKey: 'createdAt',
