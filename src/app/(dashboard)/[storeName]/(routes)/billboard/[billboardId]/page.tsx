@@ -3,7 +3,10 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: { billboardId: string; storeName: string }
+  params: {
+    billboardId: string
+    storeName: string
+  }
 }
 
 export default async function Page({ params }: Props) {
