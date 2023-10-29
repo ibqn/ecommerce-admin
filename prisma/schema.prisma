@@ -20,9 +20,9 @@ model Store {
 
   billboards Billboard[]
   categories Category[]
-  Size       Size[]
-  Color      Color[]
-  Product    Product[]
+  sizes      Size[]
+  colors     Color[]
+  products   Product[]
 }
 
 model Billboard {
@@ -48,8 +48,8 @@ model Category {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  store   Store     @relation(fields: [storeId], references: [id])
-  Product Product[]
+  store    Store     @relation(fields: [storeId], references: [id])
+  products Product[]
 }
 
 model Size {
@@ -62,7 +62,7 @@ model Size {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Product   Product[]
+  products  Product[]
 }
 
 model Color {
@@ -75,7 +75,7 @@ model Color {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Product   Product[]
+  products  Product[]
 }
 
 model Image {
@@ -102,7 +102,7 @@ model Product {
   size       Size     @relation(fields: [sizeId], references: [id])
   colorId    String
   color      Color    @relation(fields: [colorId], references: [id])
-  Image      Image[]
+  images     Image[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
