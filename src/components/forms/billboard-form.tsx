@@ -15,7 +15,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { toast } from '@/components/ui/use-toast'
-import { useOrigin } from '@/hooks/use-origin'
 import { BillboardPayload, billboardValidator } from '@/lib/validators'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Billboard } from '@prisma/client'
@@ -86,8 +85,6 @@ export const BillboardForm = (props: Props) => {
     () => (initialData ? 'Save changes' : 'Create'),
     [initialData]
   )
-
-  const origin = useOrigin()
 
   const router = useRouter()
 

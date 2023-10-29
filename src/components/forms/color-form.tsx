@@ -15,7 +15,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { toast } from '@/components/ui/use-toast'
-import { useOrigin } from '@/hooks/use-origin'
 import { ColorPayload, colorValidator } from '@/lib/validators'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Color } from '@prisma/client'
@@ -85,8 +84,6 @@ export const ColorForm = (props: Props) => {
     () => (initialData ? 'Save changes' : 'Create'),
     [initialData]
   )
-
-  const origin = useOrigin()
 
   const router = useRouter()
 
