@@ -29,6 +29,11 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
+  const transformedProduct = {
+    ...product,
+    price: product?.price.toNumber() ?? 0,
+  }
+
   const categories = await prisma.category.findMany({
     where: { storeId: store.id },
   })
@@ -45,7 +50,7 @@ export default async function Page({ params }: Props) {
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <ProductForm
-          initialData={product}
+          initialData={transformedProduct}
           storeId={store.id}
           categories={categories}
           sizes={sizes}

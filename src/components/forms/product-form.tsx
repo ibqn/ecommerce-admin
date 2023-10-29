@@ -33,11 +33,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import Link from 'next/link'
 import { Checkbox } from '@/components/ui/checkbox'
 
+type TransformedProduct = Omit<Product, 'price'> & {
+  images: Image[]
+  price: number
+}
+
 type Props = {
-  initialData?: Product & { images: Image[] }
+  initialData?: TransformedProduct
   storeId: string
   categories: Category[]
   sizes: Size[]
@@ -99,16 +103,13 @@ export const ProductForm = (props: Props) => {
     [initialData]
   )
 
-  const origin = useOrigin()
-
   const router = useRouter()
 
   const form = useForm<ProductPayload>({
     resolver: zodResolver(productValidator),
     defaultValues: {
-      name: initialData?.name ?? '',
-      images: initialData?.images ?? [],
-      price: initialData?.price?.toNumber(),
+      images: [],
+      ...initialData,
     },
   })
 
@@ -480,8 +481,6 @@ export const ProductForm = (props: Props) => {
           </Button>
         </form>
       </Form>
-
-      <Separator />
     </>
   )
 }
