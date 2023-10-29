@@ -1,7 +1,7 @@
 'use client'
 
 import { type ProductColumn } from '@/components/columns'
-import { AlertModal } from '../modals/alert-modal'
+import { AlertModal } from '@/components/modals'
 import { useState } from 'react'
 import {
   DropdownMenu,
