@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import { ArrowUpDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CellActionProduct } from '@/components/cell-actions'
+import { Checkbox } from '@/components/ui/checkbox'
 
 export type ProductColumn = {
   id: string
@@ -47,6 +48,15 @@ export const productColumns: ColumnDef<ProductColumn>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => (
+      <div className="flex items-center">
+        <Checkbox
+          checked={row.original.isArchived}
+          disabled
+          className="disabled:cursor-default"
+        />
+      </div>
+    ),
   },
   {
     accessorKey: 'isFeatured',
@@ -61,6 +71,15 @@ export const productColumns: ColumnDef<ProductColumn>[] = [
         </Button>
       )
     },
+    cell: ({ row }) => (
+      <div className="flex items-center">
+        <Checkbox
+          checked={row.original.isFeatured}
+          disabled
+          className="disabled:cursor-default"
+        />
+      </div>
+    ),
   },
   {
     accessorKey: 'price',
