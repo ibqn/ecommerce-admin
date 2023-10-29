@@ -19,10 +19,23 @@ export default async function Page({ params }: Props) {
     where: { storeId: store.id },
   })
 
+  const sizes = await prisma.size.findMany({
+    where: { storeId: store.id },
+  })
+
+  const colors = await prisma.color.findMany({
+    where: { storeId: store.id },
+  })
+
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <ProductForm storeId={store.id} categories={categories} />
+        <ProductForm
+          storeId={store.id}
+          categories={categories}
+          sizes={sizes}
+          colors={colors}
+        />
       </div>
     </div>
   )

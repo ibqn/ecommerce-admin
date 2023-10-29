@@ -18,10 +18,10 @@ import { toast } from '@/components/ui/use-toast'
 import { useOrigin } from '@/hooks/use-origin'
 import { ProductPayload, productValidator } from '@/lib/validators'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Category, Image, Product } from '@prisma/client'
+import { Category, Color, Image, Product, Size } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { Trash } from 'lucide-react'
+import { Plus, Trash } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -32,12 +32,16 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select'
+} from '@/components/ui/select'
+import Link from 'next/link'
+import { Checkbox } from '@/components/ui/checkbox'
 
 type Props = {
   initialData?: Product & { images: Image[] }
   storeId: string
   categories: Category[]
+  sizes: Size[]
+  colors: Color[]
 }
 
 type Params = {
@@ -45,7 +49,7 @@ type Params = {
 }
 
 export const ProductForm = (props: Props) => {
-  const { initialData, storeId, categories } = props
+  const { initialData, storeId, categories, sizes, colors } = props
 
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -104,7 +108,7 @@ export const ProductForm = (props: Props) => {
     defaultValues: {
       name: initialData?.name ?? '',
       images: initialData?.images ?? [],
-      price: initialData?.price?.toNumber() ?? 0,
+      price: initialData?.price?.toNumber(),
     },
   })
 
@@ -326,6 +330,146 @@ export const ProductForm = (props: Props) => {
                     Select one of the existing categories.
                   </FormDescription>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              name="sizeId"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Size</FormLabel>
+                  <FormControl>
+                    {sizes.length > 0 ? (
+                      <Select
+                        disabled={loading || !sizes.length}
+                        onValueChange={field.onChange}
+                        value={field.value}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue
+                            defaultValue={field.value}
+                            placeholder="Select a size"
+                          />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                          {sizes.map((size) => {
+                            const { id, name } = size
+                            return (
+                              <SelectItem key={id} value={size.id}>
+                                {name}
+                              </SelectItem>
+                            )
+                          })}
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <div className="flex items-center gap-x-4">
+                        <span className="text-sm text-muted-foreground">
+                          No sizes yet created.
+                        </span>
+                        <Button
+                          onClick={() =>
+                            router.push(`/${params.storeName}/size/create`)
+                          }
+                        >
+                          <Plus className="mr-2 h-4 w-4" /> Add new
+                        </Button>
+                      </div>
+                    )}
+                  </FormControl>
+
+                  <FormDescription>
+                    Select one of the existing sizes.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              name="colorId"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Color</FormLabel>
+                  <FormControl>
+                    <Select
+                      disabled={loading}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue
+                          defaultValue={field.value}
+                          placeholder="Select a color"
+                        />
+                      </SelectTrigger>
+
+                      <SelectContent>
+                        {colors.map((color) => {
+                          const { id, name } = color
+                          return (
+                            <SelectItem key={id} value={color.id}>
+                              {name}
+                            </SelectItem>
+                          )
+                        })}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+
+                  <FormDescription>
+                    Select one of the existing colors.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="isFeatured"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Featured product</FormLabel>
+                    <FormDescription>
+                      This product will appear on the home page.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="isArchived"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Archived product</FormLabel>
+                    <FormDescription>
+                      This product will be archived and thus will not appear on
+                      the page.
+                    </FormDescription>
+                  </div>
                 </FormItem>
               )}
             />
