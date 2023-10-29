@@ -22,6 +22,7 @@ model Store {
   categories Category[]
   Size       Size[]
   Color      Color[]
+  Product    Product[]
 }
 
 model Billboard {
@@ -47,7 +48,8 @@ model Category {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  store Store @relation(fields: [storeId], references: [id])
+  store   Store     @relation(fields: [storeId], references: [id])
+  Product Product[]
 }
 
 model Size {
@@ -58,8 +60,9 @@ model Size {
   name  String @unique
   value String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Product   Product[]
 }
 
 model Color {
@@ -69,6 +72,37 @@ model Color {
 
   name  String @unique
   value String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Product   Product[]
+}
+
+model Image {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id         String   @id @default(cuid())
+  storeId    String
+  store      Store    @relation(fields: [storeId], references: [id])
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+  name       String
+  price      Decimal
+  isFeatured Boolean  @default(false)
+  isArchived Boolean  @default(false)
+  sizeId     String
+  size       Size     @relation(fields: [sizeId], references: [id])
+  colorId    String
+  color      Color    @relation(fields: [colorId], references: [id])
+  Image      Image[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
