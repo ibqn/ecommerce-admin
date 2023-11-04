@@ -38,6 +38,10 @@ export const MainNav = ({ className, ...props }: Props) => {
         label: 'Products',
       },
       {
+        href: `/${params.storeName}/orders`,
+        label: 'Orders',
+      },
+      {
         href: `/${params.storeName}/settings`,
         label: 'Settings',
       },
