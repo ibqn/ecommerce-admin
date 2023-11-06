@@ -76,6 +76,9 @@ export async function GET(request: Request, { params }: Props) {
 
     const categories = await prisma.category.findMany({
       where: { storeId },
+      orderBy: {
+        orderBy: 'asc',
+      },
     })
 
     return NextResponse.json(categories)

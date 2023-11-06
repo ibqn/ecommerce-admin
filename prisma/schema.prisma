@@ -43,6 +43,7 @@ model Category {
   id          String    @id @default(cuid())
   storeId     String
   name        String    @unique
+  orderBy     Int       @unique @default(autoincrement())
   billboardId String
   billboard   Billboard @relation(fields: [billboardId], references: [id])
 
