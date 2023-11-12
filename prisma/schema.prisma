@@ -29,7 +29,7 @@ model Store {
 model Billboard {
   id       String @id @default(cuid())
   storeId  String
-  label    String @unique
+  label    String
   imageUrl String
 
   createdAt DateTime @default(now())
@@ -37,12 +37,14 @@ model Billboard {
 
   store      Store      @relation(fields: [storeId], references: [id])
   categories Category[]
+
+  @@unique([label, storeId])
 }
 
 model Category {
   id          String    @id @default(cuid())
   storeId     String
-  name        String    @unique
+  name        String
   orderBy     Int       @unique @default(autoincrement())
   billboardId String
   billboard   Billboard @relation(fields: [billboardId], references: [id])
@@ -52,6 +54,8 @@ model Category {
 
   store    Store     @relation(fields: [storeId], references: [id])
   products Product[]
+
+  @@unique([name, storeId])
 }
 
 model Size {

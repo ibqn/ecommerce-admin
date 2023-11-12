@@ -37,7 +37,7 @@ export async function POST(request: Request, { params }: Props) {
 
     // check if billboard already exists
     const billboardExists = await prisma.billboard.findUnique({
-      where: { label },
+      where: { label_storeId: { label, storeId } },
     })
 
     if (billboardExists) {

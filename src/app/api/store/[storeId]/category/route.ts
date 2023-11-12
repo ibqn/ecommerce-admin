@@ -37,7 +37,7 @@ export async function POST(request: Request, { params }: Props) {
 
     // check if category already exists
     const categoryExists = await prisma.category.findUnique({
-      where: { name },
+      where: { name_storeId: { name, storeId } },
     })
 
     if (categoryExists) {
