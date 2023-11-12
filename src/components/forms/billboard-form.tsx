@@ -110,7 +110,7 @@ export const BillboardForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'Billboard does not exist',
+          title: "Could't create Billboard",
           description: error.response?.data?.message,
           variant: 'yellow',
         })
@@ -122,8 +122,8 @@ export const BillboardForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/billboards`)
+      router.refresh()
 
       toast({
         ...toastSuccessMessage,
@@ -157,8 +157,8 @@ export const BillboardForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/billboards`)
+      router.refresh()
 
       toast({
         title: 'Billboard deleted',

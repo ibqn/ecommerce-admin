@@ -117,7 +117,7 @@ export const CategoryForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'Category does not exist',
+          title: "Could't create Category",
           description: error.response?.data?.message,
           variant: 'yellow',
         })
@@ -129,8 +129,8 @@ export const CategoryForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/categories`)
+      router.refresh()
 
       toast({
         ...toastSuccessMessage,
@@ -164,8 +164,8 @@ export const CategoryForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/categories`)
+      router.refresh()
 
       toast({
         title: 'Category deleted',
