@@ -139,8 +139,8 @@ export const ProductForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/products`)
+      router.refresh()
 
       toast({
         ...toastSuccessMessage,
@@ -174,8 +174,8 @@ export const ProductForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/products`)
+      router.refresh()
 
       toast({
         title: 'Product deleted',

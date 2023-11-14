@@ -38,7 +38,6 @@ export const SettingsForm = (props: Props) => {
   const [loading, setLoading] = useState(false)
 
   const origin = useOrigin()
-
   const router = useRouter()
 
   const form = useForm<StorePayload>({
@@ -67,8 +66,8 @@ export const SettingsForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${result.data.name}/settings`)
+      router.refresh()
 
       toast({
         title: 'Store updated',
@@ -102,8 +101,8 @@ export const SettingsForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/`)
+      router.refresh()
 
       toast({
         title: 'Store deleted',
