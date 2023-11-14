@@ -109,7 +109,7 @@ export const ColorForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'Color does not exist',
+          title: "Couldn't create color",
           description: error.response?.data?.message,
           variant: 'yellow',
         })
@@ -121,8 +121,8 @@ export const ColorForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/colors`)
+      router.refresh()
 
       toast({
         ...toastSuccessMessage,
@@ -143,7 +143,7 @@ export const ColorForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'color does not exist',
+          title: "Couldn't delete color",
           description: error.response?.data?.message,
           variant: 'yellow',
         })
@@ -156,8 +156,8 @@ export const ColorForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/colors`)
+      router.refresh()
 
       toast({
         title: 'Color deleted',

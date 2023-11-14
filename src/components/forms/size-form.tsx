@@ -140,7 +140,7 @@ export const SizeForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: "Could't create size",
+          title: "Could't delete size",
           description: error.response?.data?.message,
           variant: 'yellow',
         })
