@@ -89,11 +89,11 @@ export async function POST(request: Request, { params }: Props) {
 }
 
 type Query = {
-  categoryId: string
-  sizeId: string
-  colorId: string
-  isFeatured: boolean
-  isArchived: boolean
+  categoryId?: string
+  sizeId?: string
+  colorId?: string
+  isFeatured?: boolean
+  isArchived?: boolean
 }
 
 export async function GET(request: Request, { params }: Props) {
@@ -106,12 +106,10 @@ export async function GET(request: Request, { params }: Props) {
     //   return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
     // }
 
-    const { searchParams } = new URL(request.url)
+    const { query } = qs.parseUrl(request.url, { parseBooleans: true })
 
-    const { categoryId, sizeId, colorId, isFeatured, isArchived } = qs.parse(
-      request.url,
-      { parseBooleans: true }
-    ) as Query
+    const { categoryId, sizeId, colorId, isFeatured, isArchived } =
+      query as Query
 
     const products = await prisma.product.findMany({
       where: {
