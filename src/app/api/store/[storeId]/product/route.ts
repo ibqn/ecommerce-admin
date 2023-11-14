@@ -3,6 +3,7 @@ import { productValidator } from '@/lib/validators'
 import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+import qs from 'query-string'
 
 type Props = {
   params: {
@@ -87,6 +88,14 @@ export async function POST(request: Request, { params }: Props) {
   }
 }
 
+type Query = {
+  categoryId: string
+  sizeId: string
+  colorId: string
+  isFeatured: boolean
+  isArchived: boolean
+}
+
 export async function GET(request: Request, { params }: Props) {
   const { storeId } = params
 
@@ -99,11 +108,10 @@ export async function GET(request: Request, { params }: Props) {
 
     const { searchParams } = new URL(request.url)
 
-    const categoryId = searchParams.get('categoryId') ?? undefined
-    const sizeId = searchParams.get('sizeId') ?? undefined
-    const colorId = searchParams.get('colorId') ?? undefined
-    const isFeatured = searchParams.get('isFeatured') ? true : undefined
-    const isArchived = searchParams.get('isArchived') ? true : undefined
+    const { categoryId, sizeId, colorId, isFeatured, isArchived } = qs.parse(
+      request.url,
+      { parseBooleans: true }
+    ) as Query
 
     const products = await prisma.product.findMany({
       where: {
