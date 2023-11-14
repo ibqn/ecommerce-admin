@@ -37,7 +37,7 @@ export async function POST(request: Request, { params }: Props) {
 
     // check if size already exists
     const sizeExists = await prisma.size.findUnique({
-      where: { name },
+      where: { name_storeId: { name, storeId } },
     })
 
     if (sizeExists) {

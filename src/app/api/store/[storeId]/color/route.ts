@@ -37,7 +37,7 @@ export async function POST(request: Request, { params }: Props) {
 
     // check if color already exists
     const colorExists = await prisma.color.findUnique({
-      where: { name },
+      where: { name_storeId: { name, storeId } },
     })
 
     if (colorExists) {
