@@ -106,7 +106,7 @@ export const SizeForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'Size does not exist',
+          title: "Could't create size",
           description: error.response?.data?.message,
           variant: 'yellow',
         })
@@ -118,8 +118,8 @@ export const SizeForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/sizes`)
+      router.refresh()
 
       toast({
         ...toastSuccessMessage,
@@ -140,7 +140,7 @@ export const SizeForm = (props: Props) => {
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
-          title: 'size does not exist',
+          title: "Could't create size",
           description: error.response?.data?.message,
           variant: 'yellow',
         })
@@ -153,8 +153,8 @@ export const SizeForm = (props: Props) => {
       }
     },
     onSuccess: (result, variables, context) => {
-      router.refresh()
       router.push(`/${params.storeName}/sizes`)
+      router.refresh()
 
       toast({
         title: 'Size deleted',
