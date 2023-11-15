@@ -168,6 +168,9 @@ export async function GET(request: Request, { params }: Props) {
     // check if product exists
     const product = await prisma.product.findUnique({
       where: { id: productId },
+      include: {
+        images: true,
+      },
     })
 
     if (!product) {
