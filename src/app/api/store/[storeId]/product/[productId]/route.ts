@@ -170,6 +170,8 @@ export async function GET(request: Request, { params }: Props) {
       where: { id: productId },
       include: {
         images: true,
+        size: true,
+        color: true,
       },
     })
 
