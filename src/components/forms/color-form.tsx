@@ -24,6 +24,7 @@ import { Trash } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { ColorCircle } from '@/components/color-circle'
 
 type Props = {
   initialData?: Color
@@ -242,10 +243,7 @@ export const ColorForm = (props: Props) => {
                         placeholder="Color value..."
                         {...field}
                       />
-                      <div
-                        className="rounded-full border p-4"
-                        style={{ backgroundColor: field.value }}
-                      />
+                      <ColorCircle color={field.value} />
                     </div>
                   </FormControl>
 

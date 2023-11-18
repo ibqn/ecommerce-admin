@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import { ArrowUpDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CellActionColor } from '@/components/cell-actions'
+import { ColorCircle } from '@/components/color-circle'
 
 export type ColorColumn = {
   id: string
@@ -48,10 +49,7 @@ export const colorColumns: ColumnDef<ColorColumn>[] = [
       return (
         <div className="flex items-center gap-x-2">
           {colorValue}
-          <div
-            className="rounded-full border p-4"
-            style={{ backgroundColor: colorValue }}
-          ></div>
+          <ColorCircle color={colorValue} />
         </div>
       )
     },
