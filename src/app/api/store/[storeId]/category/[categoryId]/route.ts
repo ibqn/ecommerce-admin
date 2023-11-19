@@ -138,6 +138,7 @@ export async function GET(request: Request, { params }: Props) {
     // check if category exists
     const category = await prisma.category.findUnique({
       where: { id: categoryId },
+      include: { billboard: true },
     })
 
     if (!category) {
