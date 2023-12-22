@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@clerk/nextjs':
-    specifier: ^4.29.0
-    version: 4.29.0(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^4.29.1
+    version: 4.29.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
   '@hookform/resolvers':
     specifier: ^3.3.2
     version: 3.3.2(react-hook-form@7.49.2)
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^5.14.2
     version: 5.14.2(react@18.2.0)
   '@tanstack/react-query-devtools':
-    specifier: ^5.14.2
-    version: 5.14.2(@tanstack/react-query@5.14.2)(react@18.2.0)
+    specifier: ^5.14.5
+    version: 5.14.5(@tanstack/react-query@5.14.2)(react@18.2.0)
   '@tanstack/react-table':
     specifier: ^8.11.2
     version: 8.11.2(react-dom@18.2.0)(react@18.2.0)
@@ -66,17 +66,17 @@ dependencies:
     specifier: ^0.2.0
     version: 0.2.0(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)
   date-fns:
-    specifier: ^3.0.5
-    version: 3.0.5
+    specifier: ^3.0.6
+    version: 3.0.6
   lucide-react:
-    specifier: ^0.299.0
-    version: 0.299.0(react@18.2.0)
+    specifier: ^0.300.0
+    version: 0.300.0(react@18.2.0)
   next:
     specifier: ^14.0.4
     version: 14.0.4(react-dom@18.2.0)(react@18.2.0)
   next-cloudinary:
-    specifier: ^5.14.1
-    version: 5.14.1(next@14.0.4)(react@18.2.0)
+    specifier: ^5.16.0
+    version: 5.16.0(next@14.0.4)(react@18.2.0)
   next-themes:
     specifier: ^0.2.1
     version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
@@ -96,8 +96,8 @@ dependencies:
     specifier: ^14.10.0
     version: 14.10.0
   tailwind-merge:
-    specifier: ^2.1.0
-    version: 2.1.0
+    specifier: ^2.2.0
+    version: 2.2.0
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.4.0)
@@ -177,11 +177,11 @@ packages:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  /@clerk/backend@0.36.1(react@18.2.0):
-    resolution: {integrity: sha512-hBGU9DztqTW5uELx+ONSFgkvWBYy0ji7/SgAEEEgYEolMTQ1cs1+nTJgNuF/2tp6QWwC0qRqor7IUNCslMSKEQ==}
+  /@clerk/backend@0.37.0(react@18.2.0):
+    resolution: {integrity: sha512-ngBokqd5WaupUi5+xUaZNGCdrVMJFo+Sjiin7gxoXPVq/qdgA3phiEooEZmVAc9Io0MfAqheuiQ1XcCZj4kvdg==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/shared': 1.2.0(react@18.2.0)
+      '@clerk/shared': 1.3.0(react@18.2.0)
       '@clerk/types': 3.60.0
       '@peculiar/webcrypto': 1.4.1
       '@types/node': 16.18.6
@@ -194,24 +194,24 @@ packages:
       - react
     dev: false
 
-  /@clerk/clerk-react@4.30.1(react@18.2.0):
-    resolution: {integrity: sha512-ML+fH5uMMLjBtA+47uMxDtVVA0grfngDXWqKP1W3RGgNY3Tcq4RVeu2WbnJZmO4buo5qQLGwAF92o6gvif7nMA==}
+  /@clerk/clerk-react@4.30.2(react@18.2.0):
+    resolution: {integrity: sha512-Cr11vJj/0e75JV1WfR1UFtqJfjFOWRffl8AqcKk+QDOY7AgPd1V4Nvc7umIfhyoGYrJH+5tpga3QW2MlsekdsA==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16'
     dependencies:
-      '@clerk/shared': 1.2.0(react@18.2.0)
+      '@clerk/shared': 1.3.0(react@18.2.0)
       '@clerk/types': 3.60.0
       react: 18.2.0
       tslib: 2.4.1
     dev: false
 
-  /@clerk/clerk-sdk-node@4.13.3(react@18.2.0):
-    resolution: {integrity: sha512-f6pe9HfVcgOJ2qg8KJwi+iLsxa0fCPpsdhRBZOrjRbid9ot5IH2kbQXiNObyT9vghUjvWfjQxNt+M/0Gn0MoRw==}
+  /@clerk/clerk-sdk-node@4.13.4(react@18.2.0):
+    resolution: {integrity: sha512-pcg99eCjutPdVOhv4yXS2THV1NJhmA1gih127zW01RV8EkxeVF7K9aALqR7Hyi2ptnIsh3VF/UiYa1pvJ2R3Uw==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/backend': 0.36.1(react@18.2.0)
-      '@clerk/shared': 1.2.0(react@18.2.0)
+      '@clerk/backend': 0.37.0(react@18.2.0)
+      '@clerk/shared': 1.3.0(react@18.2.0)
       '@clerk/types': 3.60.0
       '@types/cookies': 0.7.7
       '@types/express': 4.17.14
@@ -223,18 +223,18 @@ packages:
       - react
     dev: false
 
-  /@clerk/nextjs@4.29.0(next@14.0.4)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-d64wNe1AJwvRVME6+88xh/sYTTN14yj8jjiy3u7sGiLONvkK7CpEBO3CoipJ3/vFvcji4kXrFTZXzkwuS7fAFw==}
+  /@clerk/nextjs@4.29.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-hJiHtGOWzQszL0FQ4FkDRLebR+2K3pc70Z7NJnAhS3tZqxZA6Dz03LUC88Ul6OUBi8ysekk5QqhDUbyxPSsrtA==}
     engines: {node: '>=14'}
     peerDependencies:
       next: '>=10'
       react: ^17.0.2 || ^18.0.0-0
       react-dom: ^17.0.2 || ^18.0.0-0
     dependencies:
-      '@clerk/backend': 0.36.1(react@18.2.0)
-      '@clerk/clerk-react': 4.30.1(react@18.2.0)
-      '@clerk/clerk-sdk-node': 4.13.3(react@18.2.0)
-      '@clerk/shared': 1.2.0(react@18.2.0)
+      '@clerk/backend': 0.37.0(react@18.2.0)
+      '@clerk/clerk-react': 4.30.2(react@18.2.0)
+      '@clerk/clerk-sdk-node': 4.13.4(react@18.2.0)
+      '@clerk/shared': 1.3.0(react@18.2.0)
       '@clerk/types': 3.60.0
       next: 14.0.4(react-dom@18.2.0)(react@18.2.0)
       path-to-regexp: 6.2.1
@@ -243,8 +243,8 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@clerk/shared@1.2.0(react@18.2.0):
-    resolution: {integrity: sha512-BZ33A2zN7wDQwuvjndJkXnaebWEVqvCu7H0MOn9ySURXSpwwODiGhCI4m2uizt+Wi4RofQimHe5jhXQK/D2RLg==}
+  /@clerk/shared@1.3.0(react@18.2.0):
+    resolution: {integrity: sha512-blqXI4P2FIB2kjXhYe8d5jNIbKSmpSetcT/81xcBr2RVy234cV3oVX41Ypx10M36ev5v5cUqA4FfCSQ782EIUw==}
     peerDependencies:
       react: '>=16'
     peerDependenciesMeta:
@@ -1499,17 +1499,17 @@ packages:
     resolution: {integrity: sha512-QmoJvC72sSWs3hgGis8JdmlDvqLfYGWUK4UG6OR9Q6t28JMN9m2FDwKPqoSJ9YVocELCSjMt/FGjEiLfk8000Q==}
     dev: false
 
-  /@tanstack/query-devtools@5.13.5:
-    resolution: {integrity: sha512-effSYz9AWcZ6sNd+c8LCBYFIuDZApoCTXEpRlEYChBZpMz9QUUVMLToThwCyUY49+T5pANL3XxgZf3HV7hwJlg==}
+  /@tanstack/query-devtools@5.14.5:
+    resolution: {integrity: sha512-xM8BQbE4FBAVEPr8t6MFbOJP+canDFz0hcY9Ho+5Z4LQciC60wE+7ZALx5n3InP4R7IELx8AodS5G3KYzBAwCg==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.14.2(@tanstack/react-query@5.14.2)(react@18.2.0):
-    resolution: {integrity: sha512-qSV88emQbUNM61IWCZqUdqjShPNyVcQnEaAJMFM1eaCAcUnDIpRtsGRMNEYYAjuWAXbkCjAo/JdwArF/z5hyMQ==}
+  /@tanstack/react-query-devtools@5.14.5(@tanstack/react-query@5.14.2)(react@18.2.0):
+    resolution: {integrity: sha512-aDntW1dWc/feVUYwVqfM/r5OXa3RN06VhtYrTYW9fhj0Ks2dJw6Diknh9VpYqhI+gJrhVID95Rv/ZzS6W2lANA==}
     peerDependencies:
       '@tanstack/react-query': ^5.14.2
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-devtools': 5.13.5
+      '@tanstack/query-devtools': 5.14.5
       '@tanstack/react-query': 5.14.2(react@18.2.0)
       react: 18.2.0
     dev: false
@@ -1566,7 +1566,7 @@ packages:
     resolution: {integrity: sha512-OaJ7XLaelTgrvlZD8/aa0vvvxZdUmlCn6MtWeB7TkiKW70BQLc9XEPpDLPdbo52ZhXUCrznlWdCHWxJWtdyajA==}
     dependencies:
       '@types/node': 20.10.5
-      '@types/qs': 6.9.10
+      '@types/qs': 6.9.11
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
     dev: false
@@ -1576,7 +1576,7 @@ packages:
     dependencies:
       '@types/body-parser': 1.19.5
       '@types/express-serve-static-core': 4.17.41
-      '@types/qs': 6.9.10
+      '@types/qs': 6.9.11
       '@types/serve-static': 1.15.5
     dev: false
 
@@ -1619,8 +1619,8 @@ packages:
   /@types/prop-types@15.7.11:
     resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
 
-  /@types/qs@6.9.10:
-    resolution: {integrity: sha512-3Gnx08Ns1sEoCrWssEgTSJs/rsT2vhGP+Ja9cnnk9k4ALxinORlQneLXFeFKOTJMOeZUFD1s7w+w2AphTpvzZw==}
+  /@types/qs@6.9.11:
+    resolution: {integrity: sha512-oGk0gmhnEJK4Yyk+oI7EfXsLayXatCWPHary1MtcmbAifkobT9cM9yutG/hZKIseOU0MqbIwQ/u2nn/Gb+ltuQ==}
     dev: false
 
   /@types/range-parser@1.2.7:
@@ -2139,8 +2139,8 @@ packages:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
 
-  /date-fns@3.0.5:
-    resolution: {integrity: sha512-Q4Tq5c5s/Zl/zbgdWf6pejn9ru7UwdIlLfvEEg1hVsQNQ7LKt76qIduagIT9OPK7+JCv1mAKherdU6bOqGYDnw==}
+  /date-fns@3.0.6:
+    resolution: {integrity: sha512-W+G99rycpKMMF2/YD064b2lE7jJGUe+EjOES7Q8BIGY8sbNdbgcs9XFTZwvzc9Jx1f3k7LB7gZaZa7f8Agzljg==}
     dev: false
 
   /debug@3.2.7:
@@ -3247,8 +3247,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lucide-react@0.299.0(react@18.2.0):
-    resolution: {integrity: sha512-59MiDzDzFI/efHhb4n0vGdXelMNwou7JlAFvVS4boA1G/7aYU7garPciYo73CODzkhrhz0JOgdtSTPSe5dMrlQ==}
+  /lucide-react@0.300.0(react@18.2.0):
+    resolution: {integrity: sha512-rQxUUCmWAvNLoAsMZ5j04b2+OJv6UuNLYMY7VK0eVlm4aTwUEjEEHc09/DipkNIlhXUSDn2xoyIzVT0uh7dRsg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -3316,8 +3316,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-cloudinary@5.14.1(next@14.0.4)(react@18.2.0):
-    resolution: {integrity: sha512-fEY1xdVQ2gMEitppKFEljuC85n/ZH40YOWiV7LwnIzm9cqrLxXoLAbkBlthYz4bSJ0godcn74tB5eITfp0Vzcg==}
+  /next-cloudinary@5.16.0(next@14.0.4)(react@18.2.0):
+    resolution: {integrity: sha512-cuhBvOtER766ItGegis5gtkrpNzEu6P55KyBAjJeNLbgu+moy3YrPJRlWmGF6O5DZmoiiY9vD7Y6TClxKRlD5A==}
     peerDependencies:
       next: ^12 || ^13 || ^14
       react: ^17 || ^18
@@ -4165,8 +4165,8 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /tailwind-merge@2.1.0:
-    resolution: {integrity: sha512-l11VvI4nSwW7MtLSLYT4ldidDEUwQAMWuSHk7l4zcXZDgnCRa0V3OdCwFfM7DCzakVXMNRwAeje9maFFXT71dQ==}
+  /tailwind-merge@2.2.0:
+    resolution: {integrity: sha512-SqqhhaL0T06SW59+JVNfAqKdqLs0497esifRrZ7jOaefP3o64fdFNDMrAQWZFMxTLJPiHVjRLUywT8uFz1xNWQ==}
     dependencies:
       '@babel/runtime': 7.23.6
     dev: false
