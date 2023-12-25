@@ -15,9 +15,5 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  return (
-    <div>
-      <Dashboard name={store.name} />
-    </div>
-  )
+  return <Dashboard name={store.name} />
 }
