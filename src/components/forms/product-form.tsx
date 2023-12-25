@@ -15,7 +15,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { toast } from '@/components/ui/use-toast'
-import { useOrigin } from '@/hooks/use-origin'
 import { ProductPayload, productValidator } from '@/lib/validators'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Category, Color, Image, Product, Size } from '@prisma/client'
