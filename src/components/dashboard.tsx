@@ -1,16 +1,18 @@
-'use client'
-
 import { Heading } from '@/components/heading'
 import { Separator } from '@/components/ui/separator'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { CreditCard, DollarSign, Package } from 'lucide-react'
+import { BarChartBig, CreditCard, DollarSign, Package } from 'lucide-react'
 import { formatPrice } from '@/utils/format'
+import { Overview } from '@/components/overview'
+import { getTotalRevenue } from '@/actions/get-total-revenue'
 
 type Props = {
-  name: string
+  storeId: string
 }
 
-export const Dashboard = ({ name }: Props) => {
+export const Dashboard = async ({ storeId }: Props) => {
+  const totalRevenue = await getTotalRevenue(storeId)
+
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -27,7 +29,9 @@ export const Dashboard = ({ name }: Props) => {
             </CardHeader>
 
             <CardContent>
-              <div className="text-2xl font-bold">{formatPrice(100)}</div>
+              <div className="text-2xl font-bold">
+                {formatPrice(totalRevenue)}
+              </div>
             </CardContent>
           </Card>
 
@@ -54,6 +58,19 @@ export const Dashboard = ({ name }: Props) => {
 
             <CardContent>
               <div className="text-2xl font-bold">{'17'}</div>
+            </CardContent>
+          </Card>
+
+          <Card className="col-span-3">
+            <CardHeader>
+              <CardTitle className="flex flex-row items-center justify-between space-y-0 pb-2 text-sm font-medium">
+                <span>Overview</span>
+                <BarChartBig className="h-4 w-4 text-muted-foreground" />
+              </CardTitle>
+            </CardHeader>
+
+            <CardContent>
+              <Overview data={[]} />
             </CardContent>
           </Card>
         </div>
