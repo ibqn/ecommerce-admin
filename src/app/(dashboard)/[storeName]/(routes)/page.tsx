@@ -15,5 +15,5 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  return <Dashboard name={store.name} />
+  return <Dashboard storeId={store.id} />
 }
