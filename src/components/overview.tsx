@@ -1,15 +1,24 @@
 'use client'
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import { type GraphData } from '@/type'
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from 'recharts'
 
 type Props = {
-  data: any[]
+  data: GraphData[]
 }
 
 export const Overview = ({ data }: Props) => {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="name"
           stroke="#888888"

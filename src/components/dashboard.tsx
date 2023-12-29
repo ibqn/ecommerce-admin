@@ -5,6 +5,7 @@ import { BarChartBig, CreditCard, DollarSign, Package } from 'lucide-react'
 import { formatPrice } from '@/utils/format'
 import { Overview } from '@/components/overview'
 import { getTotalRevenue, getSalesCount, getStockCount } from '@/actions'
+import { getGraphRevenue } from '@/actions/get-graph-revenue'
 
 type Props = {
   storeId: string
@@ -14,6 +15,7 @@ export const Dashboard = async ({ storeId }: Props) => {
   const totalRevenue = await getTotalRevenue(storeId)
   const salesCount = await getSalesCount(storeId)
   const stockCount = await getStockCount(storeId)
+  const graphRevenue = await getGraphRevenue(storeId)
 
   return (
     <div className="flex flex-col">
@@ -72,7 +74,7 @@ export const Dashboard = async ({ storeId }: Props) => {
             </CardHeader>
 
             <CardContent>
-              <Overview data={[]} />
+              <Overview data={graphRevenue} />
             </CardContent>
           </Card>
         </div>
