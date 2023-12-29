@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { BarChartBig, CreditCard, DollarSign, Package } from 'lucide-react'
 import { formatPrice } from '@/utils/format'
 import { Overview } from '@/components/overview'
-import { getTotalRevenue } from '@/actions/get-total-revenue'
+import { getTotalRevenue, getSalesCount, getStockCount } from '@/actions'
 
 type Props = {
   storeId: string
@@ -12,6 +12,8 @@ type Props = {
 
 export const Dashboard = async ({ storeId }: Props) => {
   const totalRevenue = await getTotalRevenue(storeId)
+  const salesCount = await getSalesCount(storeId)
+  const stockCount = await getStockCount(storeId)
 
   return (
     <div className="flex flex-col">
@@ -44,7 +46,7 @@ export const Dashboard = async ({ storeId }: Props) => {
             </CardHeader>
 
             <CardContent>
-              <div className="text-2xl font-bold">{'+25'}</div>
+              <div className="text-2xl font-bold">+{salesCount}</div>
             </CardContent>
           </Card>
 
@@ -57,7 +59,7 @@ export const Dashboard = async ({ storeId }: Props) => {
             </CardHeader>
 
             <CardContent>
-              <div className="text-2xl font-bold">{'17'}</div>
+              <div className="text-2xl font-bold">{stockCount}</div>
             </CardContent>
           </Card>
 
