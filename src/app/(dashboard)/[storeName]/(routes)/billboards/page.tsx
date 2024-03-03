@@ -1,6 +1,6 @@
-import { BillboardList } from '@/components/lists'
-import { prisma } from '@/lib/prisma'
-import { notFound } from 'next/navigation'
+import { BillboardList } from "@/components/lists"
+import { prisma } from "@/lib/prisma"
+import { notFound } from "next/navigation"
 
 type Props = {
   params: {
@@ -19,7 +19,7 @@ export default async function Page({ params }: Props) {
 
   const billboards = await prisma.billboard.findMany({
     where: { storeId: store.id },
-    orderBy: { createdAt: 'desc' },
+    orderBy: { createdAt: "desc" },
   })
 
   return (
