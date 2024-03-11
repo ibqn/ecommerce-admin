@@ -69,14 +69,14 @@ dependencies:
     specifier: ^3.3.1
     version: 3.3.1
   lucide-react:
-    specifier: ^0.350.0
-    version: 0.350.0(react@18.2.0)
+    specifier: ^0.354.0
+    version: 0.354.0(react@18.2.0)
   next:
     specifier: ^14.1.3
     version: 14.1.3(react-dom@18.2.0)(react@18.2.0)
   next-cloudinary:
-    specifier: ^6.2.0
-    version: 6.2.0(next@14.1.3)(react@18.2.0)
+    specifier: ^6.2.1
+    version: 6.2.1(next@14.1.3)(react@18.2.0)
   next-themes:
     specifier: ^0.2.1
     version: 0.2.1(next@14.1.3)(react-dom@18.2.0)(react@18.2.0)
@@ -290,8 +290,8 @@ packages:
     resolution: {integrity: sha512-o6cJsN49OIelLcSkqUf4WzgefpePDFsAaeQfJbpcKhVdtvmWv71K0oZwMXuX62IY1OolqIg0etMiHtWZPhvPNA==}
     dev: false
 
-  /@cloudinary/transformation-builder-sdk@1.13.0:
-    resolution: {integrity: sha512-RCP+/B97t+rhh5ZmnOBerM45b73QATIXBv10SqOh9SU03GlNhsK3D3Ol9hrdCd1dcYks/rrTaK41Li5GNSEDJQ==}
+  /@cloudinary/transformation-builder-sdk@1.13.1:
+    resolution: {integrity: sha512-APEOPRoJZF4Z0zOLOi3UVbmb2g3NnhsYlGRhZLL4KadYMEisp26IrPhhw8aP3Luq2QI1KAJBi4aXN23fipDiiQ==}
     dependencies:
       '@cloudinary/url-gen': 1.15.0
     dev: false
@@ -299,7 +299,7 @@ packages:
   /@cloudinary/url-gen@1.15.0:
     resolution: {integrity: sha512-bjU67eZxLUgoRy/Plli4TQio7q6P31OYqnEgXxeN9TKXrzr6h0DeEdIUhKI9gy3HkEBWXWWJIPh7j7gkOJPnyA==}
     dependencies:
-      '@cloudinary/transformation-builder-sdk': 1.13.0
+      '@cloudinary/transformation-builder-sdk': 1.13.1
     dev: false
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.57.0):
@@ -3317,8 +3317,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lucide-react@0.350.0(react@18.2.0):
-    resolution: {integrity: sha512-5IZVKsxxG8Nn81gpsz4XLNgCAXkppCh0Y0P0GLO39h5iVD2WEaB9of6cPkLtzys1GuSfxJxmwsDh487y7LAf/g==}
+  /lucide-react@0.354.0(react@18.2.0):
+    resolution: {integrity: sha512-qI0x/hhcuHieaUUxFejesm5T/ditszQ2x1gUkqKnTMZRAOdxT2nGzbOFYrhc0wRjuA2MN1o5JCrcRPYcHH3l8A==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -3397,8 +3397,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-cloudinary@6.2.0(next@14.1.3)(react@18.2.0):
-    resolution: {integrity: sha512-yr3uKtfNfJ6ybd97j/lkL7qCGMDifysuelE8I9Xu5tCgn+86XGy1pVEPLQ0XUSG0wYaKC5LxnRgkD+0BPB5lKw==}
+  /next-cloudinary@6.2.1(next@14.1.3)(react@18.2.0):
+    resolution: {integrity: sha512-ixHXTk5/Ftmo0x2m1Zggs5lq8EwZ15IUDeghaG6AVE2cXZUAm3NViE+CFS8mmtdov5YQojgicFsBEWWPkEe9Kg==}
     peerDependencies:
       next: ^12 || ^13 || ^14
       react: ^17 || ^18
